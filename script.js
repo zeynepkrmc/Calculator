@@ -13,9 +13,9 @@ function updateDisplay() {
 }
 
 keys.addEventListener('click',function(e){
-    const element = e.target;//target ile elemente ulaştık.
-    //elementin üzerinden matches metodu ile tıklanan 
-    //elementin buton olup olmadığını kontrol eder.
+    const element = e.target;//we reached to the element with target.
+    //Clicking on the element with the matches method
+   //Checks if the element is a button.
     //check if the element is a button, if not do nothing
     if(!element.matches('button')) return;
     
