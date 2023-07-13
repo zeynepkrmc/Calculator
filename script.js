@@ -14,37 +14,60 @@ function updateDisplay() {
 
 keys.addEventListener('click',function(e){
     const element = e.target;//we reached to the element with target.
+
+    const value = element.value;
+
     //Clicking on the element with the matches method
-   //Checks if the element is a button.
+    //Checks if the element is a button.
     //check if the element is a button, if not do nothing
     if(!element.matches('button')) return;
+
+    switch(element.value) {
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+        case '=':
+            handleOperator(value);
+            break;
+        case '.':
+            inputDecimal();
+            break;
+        case 'clear':
+            clear();
+            break;
+        default:
+            inputNumber(element.value);
+
+    }
     
-    if(element.classList.contains('operator')) {
+    //case '+,-,*,/':
+    /*if(element.classList.contains('operator')) {
         //console.log('operator', element.value);
         handleOperator(element.value);//which info will be sent +,-,*,/
         updateDisplay();
         return;
-    }
+    }*/
 
-    if(element.classList.contains('decimal')) {
+    //case '.':
+    /*if(element.classList.contains('decimal')) {
         //console.log('decimal', element.value);
         inputDecimal(element.value);
         updateDisplay();
         return;
-    }
+    }*/
 
-    if(element.classList.contains('clear')) {
+    //case 'clear':
+    /*if(element.classList.contains('clear')) {
        //console.log('clear',element.value);
        clear();
        updateDisplay(); 
        return;
-    }
+    }*/
 
 
-    
-    //console.log('number', element.value);
-    inputNumber(element.value);
     updateDisplay();
+    
 });
 
 function handleOperator(nextOperator){
