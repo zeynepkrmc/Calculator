@@ -22,6 +22,7 @@ keys.addEventListener('click',function(e){
     if(element.classList.contains('operator')) {
         //console.log('operator', element.value);
         handleOperator(element.value);//which info will be sent +,-,*,/
+        updateDisplay();
         return;
     }
 
@@ -49,13 +50,38 @@ keys.addEventListener('click',function(e){
 function handleOperator(nextOperator){
     const value = parseFloat(displayValue);
 
+    if(operator && waitingForSecondValue) {
+        operator = nextOperator;
+        return;
+    }
+
     if(firstValue  === null) {
         firstValue = value;
+    } else if(operator) {
+        const result = calculate(firstValue, value, operator);
+
+        displayValue = `${parseFloat(result.toFixed(7))}`; 
+        firstValue = result;
     }
+
     waitingForSecondValue = true;
     operator = nextOperator;
+
+    console.log(displayValue, firstValue, operator, waitingForSecondValue);
 }
 
+function calculate(first, second, operator){
+    if(operator ==='+'){
+        return first + second;
+    } else if(operator === '-') {
+        return first - second;
+    } else if(operator === '*') {
+        return first * second;
+    } else if (operator === '/') {
+        return first / second;
+    }
+    return second;
+}
 
 //number info sending
 function inputNumber(num){
@@ -65,6 +91,8 @@ function inputNumber(num){
     } else {
     displayValue = displayValue === '0'? num: displayValue + num;
     }
+
+    console.log(displayValue, firstValue, operator, waitingForSecondValue);
 }
 
 function inputDecimal(){
