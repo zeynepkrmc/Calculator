@@ -1,5 +1,5 @@
 const display = document.querySelector('.calculator-input');
-const keys = documnet.querySelector('.calculator-keys');
+const keys = document.querySelector('.calculator-keys');
 
 let displayValue = '0';
 
@@ -8,7 +8,6 @@ updateDisplay();
 function updateDisplay() {
     display.value = displayValue;
 }
-
 
 keys.addEventListener('click',function(e){
     const element = e.target;//target ile elemente ulaştık.
@@ -21,22 +20,26 @@ keys.addEventListener('click',function(e){
         console.log('operator',element.value);
         return;
     }
+
     if(element.classList.contains('decimal')) {
         //console.log('decimal',element.value);
-        inputDecimal(elemnt.value);
+        inputDecimal(element.value);
         updateDisplay();
         return;
     }
+
     if(element.classList.contains('clear')) {
-        console.log('clear',element.value);
-        return;
+       //console.log('clear',element.value);
+       clear();
+       updateDisplay(); 
+       return;
     }
 
 
     
     //console.log('number', element.value);
 
-    inputNumber(elemeny.value);
+    inputNumber(element.value);
     updateDisplay();
 });
 
@@ -48,4 +51,8 @@ function inputDecimal(){
     if(!displayValue.includes('.')){
         displayValue += '.';
     }
+}
+
+function clear(){
+    displayValue = '0';
 }
