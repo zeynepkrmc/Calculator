@@ -17,12 +17,12 @@ keys.addEventListener('click',function(e){
     if(!element.matches('button')) return;
     
     if(element.classList.contains('operator')) {
-        console.log('operator',element.value);
+        console.log('operator', element.value);
         return;
     }
 
     if(element.classList.contains('decimal')) {
-        //console.log('decimal',element.value);
+        //console.log('decimal', element.value);
         inputDecimal(element.value);
         updateDisplay();
         return;
@@ -38,7 +38,6 @@ keys.addEventListener('click',function(e){
 
     
     //console.log('number', element.value);
-
     inputNumber(element.value);
     updateDisplay();
 });
